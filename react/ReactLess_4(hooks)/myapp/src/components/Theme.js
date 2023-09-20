@@ -6,6 +6,9 @@ function Theme(){
     // и так циклично
 
     const [theme, setTheme] = useState('green');
+    const [isVisible, setVisible] = useState(true);
+
+    const handleClick = () => setVisible(!isVisible);
 
     function changeTheme() {
         if (theme === 'green'){
@@ -16,8 +19,9 @@ function Theme(){
     return(
         <div style={{ backgroundColor: theme }}>
             <h1>Смена темы</h1>
-           <button onClick={changeTheme}>Поменять тему</button>
-            <ul>
+           <button onClick={() => changeTheme()}>Поменять тему</button>
+            <button onClick={handleClick}>Спрятать/Показать список!</button>
+            { isVisible && <ul>
                 <li>1</li>
                 <li>2</li>
                 <li>3</li>
@@ -28,7 +32,7 @@ function Theme(){
                 <li>8</li>
                 <li>9</li>
                 <li>10</li>
-            </ul>
+            </ul> }
         </div>
     )
 }
