@@ -36,6 +36,24 @@ function Employees(){
 
         setEmployees([...employees, newEmployee])
     }
+    function changeSalary(id){
+        const changedEmployees = employees.map(elem => {
+            if (elem.id === id) {
+                elem.salary = 0
+            }
+
+            return elem
+        });
+
+        setEmployees(changedEmployees)
+    }
+    function sortEmp(){
+        const copyEmp = [...employees];
+        copyEmp.sort((a, b) => a.salary - b.salary);
+
+        setEmployees(copyEmp);
+    }
+
 
     return(
         <div>
@@ -44,10 +62,11 @@ function Employees(){
                 <button onClick={() => deleteFirstEmployee()}>Удалить первого сотрудника</button>
                 <button onClick={() => deleteLastEmployee()}>Удалить последнего сотрудника</button>
                 <button onClick={() => addNewEmployee()}>Добавить нового сотрудника</button>
+                <button onClick={() => sortEmp()}>Сортировать сотрудников</button>
             </div>
             <div>
                 { employees.map((e) =>
-                    <div key={e.id}>
+                    <div key={e.id} onClick={() => changeSalary(e.id)}>
                         <h3>{ e.name }</h3>
                         <p>{ e.salary }</p>
                     </div>
