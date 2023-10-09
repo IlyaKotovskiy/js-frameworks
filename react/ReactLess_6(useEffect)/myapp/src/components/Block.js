@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-function Block(){
+export function Block() {
 
     // 4 режим работы: выполнение кода после РАЗМОНТИРОВАНИЯ компонента Block
     // useEffect(() => {
@@ -17,11 +17,9 @@ function Block(){
         }
     }, [])
 
-    return(
-        <div style={{color: 'red'}}>
+    return (
+        <div style={ { color: 'red' } }>
             <h2>Смонтирован!</h2>
         </div>
     )
 }
-
-export default Block

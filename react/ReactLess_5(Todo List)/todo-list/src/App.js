@@ -1,23 +1,24 @@
 import './style.global.css';
 import { TodoList } from "./components/TodoList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AddTodo } from "./components/AddTodo";
 
 export function App() {
     const data = [
-        {id: 1, title: 'Позавтракать', completed: true},
-        {id: 2, title: 'Почистить огурцы', completed: false},
-        {id: 3, title: 'Помыть кота', completed: true},
+        { id: 1, title: 'Позавтракать', completed: true },
+        { id: 2, title: 'Почистить огурцы', completed: false },
+        { id: 3, title: 'Помыть кота', completed: true },
     ]
 
-    const [todos, setTodos] = useState(data);
+    const [ todos, setTodos ] = useState(data);
 
     function removeTodoItem(id) {
         const removedTasks = todos.filter(elem => elem.id !== id);
 
         setTodos(removedTasks)
     }
-    function changeTodoItem(id){
+
+    function changeTodoItem(id) {
         const changedItem = todos.map(elem => {
             if (elem.id === id) {
                 elem.completed = !elem.completed
@@ -27,23 +28,35 @@ export function App() {
 
         setTodos(changedItem)
     }
-    function addTodoItem(title){
+
+    function addTodoItem(title) {
         const newTodo = {
             id: Date.now(),
             title,
             completed: false
         }
 
-        setTodos([newTodo, ...todos])
+        setTodos([ newTodo, ...todos ])
     }
 
-    return(
+    useEffect(() => {
+        const local_data = localStorage.getItem('todos-list');
+        if (local_data){
+            setTodos(JSON.parse(local_data));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('todos-list', JSON.stringify(todos));
+    }, [ todos ]);
+
+    return (
         <div>
-            <AddTodo addTodoItem={addTodoItem} />
+            <AddTodo addTodoItem={ addTodoItem }/>
             <TodoList
-                todos={todos}
-                removeTodoItem={removeTodoItem}
-                changeTodoItem={changeTodoItem}
+                todos={ todos }
+                removeTodoItem={ removeTodoItem }
+                changeTodoItem={ changeTodoItem }
             />
         </div>
     )

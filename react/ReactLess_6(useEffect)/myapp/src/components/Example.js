@@ -2,12 +2,12 @@
 // выполняет побочный код
 
 import { useEffect, useState } from "react"
-import Block from "./Block"
+import { Block } from "./Block"
 
-function Example(){
+export function Example() {
 
-    const [count1, setCount1] = useState(0)
-    const [count2, setCount2] = useState(0)
+    const [ count1, setCount1 ] = useState(0)
+    const [ count2, setCount2 ] = useState(0)
 
     // у useEffect существуют 4 режима работы
     // console.log('Инициализация!')
@@ -34,16 +34,14 @@ function Example(){
     // 4 режим работы: выполнение кода после РАЗМОНТИРОВАНИЯ
     // см пример в компоненте BLOCK
 
-    return(
+    return (
         <div>
-            <h2>{count1}</h2>
-            <button onClick={() => setCount1(count1 + 1)}>Refresh!</button>
-            <h2>{count2}</h2>
-            <button onClick={() => setCount2(count2 + 1)}>Refresh!</button>
+            <h2>{ count1 }</h2>
+            <button onClick={ () => setCount1(count1 + 1) }>Refresh!</button>
+            <h2>{ count2 }</h2>
+            <button onClick={ () => setCount2(count2 + 1) }>Refresh!</button>
 
-            {(count1 < 5) && <Block/>}
+            { (count1 < 5) && <Block/> }
         </div>
     )
 }
-
-export default Example
