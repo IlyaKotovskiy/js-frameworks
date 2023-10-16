@@ -2,6 +2,7 @@ import './style.global.css';
 import { TodoList } from "./components/TodoList";
 import { useEffect, useState } from "react";
 import { AddTodo } from "./components/AddTodo";
+import { Context } from "./context/Context";
 
 export function App() {
     const data = [
@@ -41,7 +42,7 @@ export function App() {
 
     useEffect(() => {
         const local_data = localStorage.getItem('todos-list');
-        if (local_data){
+        if (local_data) {
             setTodos(JSON.parse(local_data));
         }
     }, []);
@@ -51,13 +52,11 @@ export function App() {
     }, [ todos ]);
 
     return (
-        <div>
-            <AddTodo addTodoItem={ addTodoItem }/>
-            <TodoList
-                todos={ todos }
-                removeTodoItem={ removeTodoItem }
-                changeTodoItem={ changeTodoItem }
-            />
-        </div>
+        <Context.Provider value={ { removeTodoItem, changeTodoItem } }>
+            <div>
+                <AddTodo addTodoItem={ addTodoItem }/>
+                <TodoList todos={ todos } />
+            </div>
+        </Context.Provider>
     )
 }

@@ -1,4 +1,9 @@
-export function TodoItem({ id, title, completed, removeTodoItem, changeTodoItem }) {
+import { useContext } from "react";
+import { Context } from "../context/Context";
+
+export function TodoItem({ id, title, completed }) {
+    const { removeTodoItem, changeTodoItem } = useContext(Context);
+
     return(
         <div
             className='todo_item'

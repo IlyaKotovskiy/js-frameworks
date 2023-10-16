@@ -1,6 +1,6 @@
 import { TodoItem } from "./TodoItem";
 
-export function TodoList({ todos, removeTodoItem, changeTodoItem }) {
+export function TodoList({ todos }) {
     return(
         <div>
             { todos.map(elem => <TodoItem
@@ -8,8 +8,6 @@ export function TodoList({ todos, removeTodoItem, changeTodoItem }) {
                 id={elem.id}
                 title={elem.title}
                 completed={elem.completed}
-                removeTodoItem={removeTodoItem}
-                changeTodoItem={changeTodoItem}
             />) }
         </div>
     )
