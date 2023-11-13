@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 
 export function ProductInfoPage() {
   const { id } = useParams();
-  const [product, setProduct] = useState({images: []});
+  const location = useLocation();
+  console.log(location);
+  const [product, setProduct] = useState({ images: [] });
 
   useEffect(() => {
-    fetch('https://dummyjson.com/products/' + id)
-      .then(res => res.json())
-      .then(data => setProduct(data));
+    if (location.state) {
+      setProduct(location.state)
+      console.log('optimaze')
+    } else {
+      fetch('https://dummyjson.com/products/' + id)
+        .then(res => res.json())
+        .then(data => setProduct(data));
+    }
   }, [id]);
-
-  console.log(product)
 
   return (
     <div className="content">

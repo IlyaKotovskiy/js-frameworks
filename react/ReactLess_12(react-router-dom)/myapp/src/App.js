@@ -11,18 +11,18 @@ import { ProductInfoPage } from './pages/ProductInfoPage';
 export function App() {
   return (
     <div>
-      <Header/>
       <Router>
+        <Header />
         <Routes>
-          <Route path='/' element={<HomePage/>}/>
-          <Route path='/about' element={<AboutPage/>}/>
-          <Route path='/contacts' element={<ContactsPage/>}/>
-          <Route path='/product/:id' element={<ProductInfoPage/>}/>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/contacts' element={<ContactsPage />} />
+          <Route path='/product/:id' element={<ProductInfoPage />} />
 
-          <Route path='*' element={<NotFoundPage/>}/>
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
+        <Footer />
       </Router>
-      <Footer/>
     </div>
   );
 }

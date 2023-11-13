@@ -15,7 +15,7 @@ export function AboutPage() {
             <ul>
                 {products.map(elem =>
                     // Link это как тег a, только он не перезагружает страницу
-                    <Link key={elem.id} to={'/product/' + elem.id}>
+                    <Link key={elem.id} to={'/product/' + elem.id} state={elem}>
                         <li>{elem.title}</li>
                     </Link>
                 )}
