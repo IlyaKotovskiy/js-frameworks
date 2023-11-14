@@ -1,7 +1,8 @@
+import { forwardRef } from 'react';
 import s from './Input.module.css';
 
-export function Input() {
+export const Input = forwardRef((props, ref) => {
   return (
-    <input/>
+    <input ref={ref} {...props} className={s.inp_elem} />
   )
-}
+});
