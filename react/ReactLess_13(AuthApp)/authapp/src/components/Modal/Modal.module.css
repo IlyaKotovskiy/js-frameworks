@@ -29,3 +29,11 @@
 .modal_content.active{
   transform: scale(1);
 }
+
+.xmark_icon {
+  height: 30px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}

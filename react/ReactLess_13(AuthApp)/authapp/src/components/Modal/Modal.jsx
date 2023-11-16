@@ -1,4 +1,5 @@
 import { Routes, Route, Link } from 'react-router-dom';
+import { ReactComponent as XMarkIcon } from '../../icons/xmark-solid.svg';
 import s from './Modal.module.css';
 import { FormElem } from './FormElem/FormElem';
 
@@ -6,7 +7,7 @@ export function Modal({ active, setActive }) {
   return (
     <div className={`${s.modal} ${active && s.active}`}>
       <div className={`${s.modal_content} ${active && s.active}`}>
-        <button onClick={() => setActive(false)}>X</button>
+        <XMarkIcon onClick={() => setActive(false)} className={s.xmark_icon}/>
         <Routes>
           <Route path='/login' element={
             <FormElem
