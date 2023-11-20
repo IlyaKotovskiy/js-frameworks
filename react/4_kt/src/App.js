@@ -16,7 +16,7 @@ export function App() {
     }
 
     return (
-        <Router>
+        <Router basename='js-frameworks'>
             <Header autoScroll={autoScroll} />
             <Routes>
                 <Route path='/' element={<HomePage />} />
