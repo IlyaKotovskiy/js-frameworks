@@ -1,13 +1,15 @@
-const defaultState = [
-  { id: 1, name: 'Alex', age: 30 },
-  { id: 2, name: 'Neena', age: 40 },
-  { id: 3, name: 'Steven', age: 50 },
-  { id: 4, name: 'John', age: 60 },
+const start_data = [
+  { id: 11, name: 'Alex', age: 30 },
+  { id: 12, name: 'Neena', age: 40 },
+  { id: 13, name: 'Steven', age: 50 },
+  { id: 14, name: 'John', age: 60 },
 ];
+const defaultState = JSON.parse(localStorage.getItem("users")) ?? start_data;
 
 const DELETE_FIRST_USER = 'DELETE_FIRST_USER';
 const DELETE_LAST_USER = 'DELETE_LAST_USER';
-const DELETE_CURRENT_USER = 'DELETE_CURRENT_USER';
+const DELETE_USER_BY_ID = 'DELETE_USER_BY_ID';
+const GET_USER_LIST = 'GET_USER_LIST';
 
 export const usersReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -15,8 +17,10 @@ export const usersReducer = (state = defaultState, action) => {
       return state.slice(1);
     case DELETE_LAST_USER:
       return state.slice(0, state.length - 1);
-    case DELETE_CURRENT_USER:
+    case DELETE_USER_BY_ID:
       return state.filter(user => user.id !== action.payload);
+    case GET_USER_LIST:
+      return [...state, ...action.payload]
     default:
       return state;
   }
@@ -24,4 +28,5 @@ export const usersReducer = (state = defaultState, action) => {
 
 export const deleteFirstUserAction = () => ({ type: DELETE_FIRST_USER });
 export const deleteLastUserAction = () => ({ type: DELETE_LAST_USER });
-export const deleteCurrentUserAction = (payload) => ({ type: DELETE_CURRENT_USER, payload });
+export const delUserByIdAction = (payload) => ({ type: DELETE_USER_BY_ID, payload });
+export const getUserListAction = (payload) => ({ type: GET_USER_LIST, payload });
